@@ -8,7 +8,7 @@ pkgver=22.04.3
 pkgrel=2
 arch=(x86_64)
 license=(GPL LGPL FDL)
-makedepends=(extra-cmake-modules kdoctools5 plasma-framework knewstuff ktexteditor5 kactivities kuserfeedback)
+makedepends=(extra-cmake-modules kdoctools5 plasma-framework5 knewstuff ktexteditor5 kactivities5 kuserfeedback)
 source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgbase-$pkgver.tar.xz{,.sig})
 sha256sums=('6e3e4f78c8c2b6a68ce8122dbcd1f1222ec18dd17aa1b4b155989a4659c8d436'
             'SKIP')
