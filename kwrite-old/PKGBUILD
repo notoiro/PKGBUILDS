@@ -1,0 +1,39 @@
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Maintainer: Antonio Rojas <arojas@archlinux.org>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+
+pkgbase=kate
+pkgname=kwrite-old
+pkgver=22.04.3
+pkgrel=2
+arch=(x86_64)
+license=(GPL LGPL FDL)
+makedepends=(extra-cmake-modules kdoctools5 plasma-framework knewstuff ktexteditor5 kactivities kuserfeedback)
+source=(https://download.kde.org/stable/release-service/$pkgver/src/$pkgbase-$pkgver.tar.xz{,.sig})
+sha256sums=('6e3e4f78c8c2b6a68ce8122dbcd1f1222ec18dd17aa1b4b155989a4659c8d436'
+            'SKIP')
+validpgpkeys=(CA262C6C83DE4D2FB28A332A3A6A4DB839EAA6D7  # Albert Astals Cid <aacid@kde.org>
+              F23275E4BF10AFC1DF6914A6DBD2CE893E2D1C87  # Christoph Feck <cfeck@kde.org>
+              D81C0CB38EB725EF6691C385BB463350D6EF31EF) # Heiko Becker <heiko.becker@kde.org>
+options=(debug)
+pkgdesc='Text Editor'
+url='https://apps.kde.org/kwrite/'
+depends=(ktexteditor5 hicolor-icon-theme)
+conflicts=(kwrite)
+
+build() {
+  cmake -B build -S $pkgbase-$pkgver \
+    -DBUILD_TESTING=OFF
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+
+  find "$pkgdir" -type f -name '*kate*' -exec rm {} \;
+  rm -r "$pkgdir"/usr/lib/qt/plugins/ktexteditor \
+        "$pkgdir"/usr/share/doc/HTML/*/{kate,katepart} \
+        "$pkgdir"/usr/share/katexmltools \
+        "$pkgdir"/usr/share/locale/*/LC_MESSAGES/{ktexteditorpreviewplugin,lspclient,tabswitcherplugin}.mo \
+        "$pkgdir"/usr/share/plasma/plasmoids
+}
