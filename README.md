@@ -1,0 +1,2 @@
+# PKGBUILDS
+自分用
