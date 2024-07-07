@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index df6ff6e..0a362eb 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -24,7 +24,7 @@
+ 
+ cmake_minimum_required(VERSION 3.26)
+ 
+-if (${QT_MAJOR_VERSION} STREQUAL "")
++if ("${QT_MAJOR_VERSION}" STREQUAL "")
+   set(QT_MAJOR_VERSION 6)
+ endif ()
+ set(Q ${QT_MAJOR_VERSION})

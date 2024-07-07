@@ -1,0 +1,33 @@
+pkgname=plasma6-wallpaper-switcher
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="A virtual desktop wallpaper switcher for KDE Plasma 6"
+arch=('x86_64')
+url="https://github.com/martenjj/wallpaperswitch"
+license=('GPL-2.0')
+makedepends=(git extra-cmake-modules qt6-base qt6-declarative kio kxmlgui kstatusnotifieritem)
+source=("git+https://github.com/martenjj/wallpaperswitch" "build.patch")
+sha256sums=("SKIP" "2a95fd952aaaf9f8bd6d06346dedf6793331cfca2052743e9137d8ca70338bec")
+
+build(){
+  cd "${srcdir}/wallpaperswitch"
+
+  git switch kf6
+
+  patch -p1 -i "${srcdir}/build.patch"
+
+  mkdir build
+  cd build
+
+  cmake ..
+
+  make
+}
+
+package(){
+  cd "${srcdir}/wallpaperswitch/build"
+
+  make DESTDIR="${pkgdir}" install
+
+  install -Dm644 ../COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+}

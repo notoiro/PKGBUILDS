@@ -15,3 +15,13 @@ https://apps.kde.org/kwrite/
 公式にAppImageしかなかったのでビルドスクリプトいじってdebでビルドする形でパッケージ化。適当に書いたDesktop Entry付き。
 
 https://github.com/vrc-get/vrc-get/blob/master/vrc-get-gui/README.md
+
+### plasma6-wallpaper-switcher
+Plasma6で仮想デスクトップごとに壁紙設定できるようにするやつ
+
+バージョン番号不明。Gitのブランチからビルドしてるし作ってテスト終わった後に`-git`なパッケージだなぁって思った。
+
+https://github.com/martenjj/wallpaperswitch
+
+## License
+改変したものは元のライセンス通り、私が書いた物はCC0
