@@ -14,7 +14,8 @@ https://apps.kde.org/kwrite/
 ### alcom*
 高速なオープンソースの[VRChat Creator Companion](https://vcc.docs.vrchat.com )の代替ツール
 
-公式にAppImageしかなかったのでビルドスクリプトいじってdebでビルドする形でパッケージ化。適当に書いたDesktop Entry付き。
+tar.gzからビルドすると.gitがなくてエラー出るのでコミットハッシュ取得してる部分にパッチを当ててます。
+~~公式にAppImageしかなかったのでビルドスクリプトいじってdebでビルドする形でパッケージ化。適当に書いたDesktop Entry付き。~~
 
 https://github.com/vrc-get/vrc-get/blob/master/vrc-get-gui/README.md
 
