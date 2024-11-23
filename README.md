@@ -2,6 +2,8 @@
 自分用に書き換えたり作ったりしたPKGBUILD詰め合わせ
 
 ## LIST
+`*`がついてるものは私が書いたやつ。
+
 ### kwrite-old
 KDEのテキストエディタ
 
@@ -9,14 +11,14 @@ KDEのテキストエディタ
 
 https://apps.kde.org/kwrite/
 
-### alcom
+### alcom*
 高速なオープンソースの[VRChat Creator Companion](https://vcc.docs.vrchat.com )の代替ツール
 
 公式にAppImageしかなかったのでビルドスクリプトいじってdebでビルドする形でパッケージ化。適当に書いたDesktop Entry付き。
 
 https://github.com/vrc-get/vrc-get/blob/master/vrc-get-gui/README.md
 
-### plasma6-wallpaper-switcher
+### plasma6-wallpaper-switcher*
 Plasma6で仮想デスクトップごとに壁紙設定できるようにするやつ
 
 バージョン番号不明。Gitのブランチからビルドしてるし作ってテスト終わった後に`-git`なパッケージだなぁって思った。
