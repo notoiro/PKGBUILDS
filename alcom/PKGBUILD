@@ -1,21 +1,23 @@
 pkgname=alcom
-pkgver=0.1.7
+pkgver=0.1.16
 pkgrel=1
 pkgdesc="Fast open-source alternative of VRChat Creator Companion."
 arch=('x86_64')
 url="https://github.com/vrc-get/vrc-get"
 license=('MIT')
-depends=(gtk3 webkit2gtk openssl libsoup gcc-libs cairo gdk-pixbuf2 glibc glib2)
-makedepends=(cargo cargo-about nodejs npm dotnet-sdk lld)
+depends=(gtk3 webkit2gtk-4.1 openssl libsoup3 hicolor-icon-theme gcc-libs cairo gdk-pixbuf2 glibc glib2)
+makedepends=(cargo cargo-about nodejs-lts-iron npm dotnet-sdk lld)
 options=(!lto)
 _archive="vrc-get-gui-v${pkgver}"
-source=("$_archive.tar.gz::$url/archive/refs/tags/gui-v${pkgver}.tar.gz" "${pkgname}.desktop")
-sha256sums=('618f4c64839141231b27234083258cf103d591246580eead81bc3c15596a86db' "a6d59d86ffd245591a3514540ccac883d134944e06fc3ce22672726811b6793e")
+source=("$_archive.tar.gz::$url/archive/refs/tags/gui-v${pkgver}.tar.gz" "build.patch")
+sha256sums=("d06238659b773a81eefdb545055c3783e538ad53df7620da3a7ac8b64865e1b0" "7ba10645cbd486d7440d0cf324941b3f87ceda67897f9c280f8bfe941803227d")
 
 prepare() {
-  cd "$_archive/vrc-get-gui"
+  cd "$_archive"
 
-  sed -i "s/\"appimage\"/\"deb\"/g" Tauri.toml
+  patch -p1 -i "${srcdir}/build.patch"
+
+  cd "vrc-get-gui"
 
   export RUSTUP_TOOLCHAIN=stable
   cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
@@ -35,7 +37,5 @@ package() {
   cd "$_archive/vrc-get-gui"
 
   install -Dm644 ../LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-  install -Dm755 "target/release/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
-  install -Dm644 icons/icon.png "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
-  install -Dm644 "${srcdir}/${pkgname}.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
+  cp -a "target/release/bundle/deb/ALCOM_${pkgver}_amd64/data/." "${pkgdir}"
 }
