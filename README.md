@@ -26,5 +26,11 @@ Plasma6で仮想デスクトップごとに壁紙設定できるようにする�
 
 https://github.com/martenjj/wallpaperswitch
 
+### linux-pf-acso
+AURの`linux-pf`のPKGBUILDに[benbaker76/linux-acs-override](https://github.com/benbaker76/linux-acs-override )のACS Overrideパッチを適用してビルドするようにしたもの。
+
+`linux-zen`でもよかったんだけど年々VMが重くなってきた、かといって`xanmod`は流石にCPUに悪そう、ってことでお試しでpfカーネルにパッチ当ててビルドしてみた産物。
+結果として明らかに引っかかりは減ってる気がするのでビルド時間分の価値はあると思う。
+
 ## License
 改変したものは元のライセンス通り、私が書いた物はCC0
