@@ -1,5 +1,5 @@
 pkgname=alcom
-pkgver=0.1.16
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="Fast open-source alternative of VRChat Creator Companion."
 arch=('x86_64')
@@ -9,13 +9,11 @@ depends=(gtk3 webkit2gtk-4.1 openssl libsoup3 hicolor-icon-theme gcc-libs cairo 
 makedepends=(cargo cargo-about nodejs-lts-iron npm dotnet-sdk lld)
 options=(!lto)
 _archive="vrc-get-gui-v${pkgver}"
-source=("$_archive.tar.gz::$url/archive/refs/tags/gui-v${pkgver}.tar.gz" "build.patch")
-sha256sums=("d06238659b773a81eefdb545055c3783e538ad53df7620da3a7ac8b64865e1b0" "7ba10645cbd486d7440d0cf324941b3f87ceda67897f9c280f8bfe941803227d")
+source=("$_archive.tar.gz::$url/archive/refs/tags/gui-v${pkgver}.tar.gz")
+sha256sums=("SKIP")
 
 prepare() {
   cd "$_archive"
-
-  patch -p1 -i "${srcdir}/build.patch"
 
   cd "vrc-get-gui"
 
@@ -30,7 +28,7 @@ build() {
   export CARGO_TARGET_DIR=target
   export RUSTFLAGS="-C link-arg=-fuse-ld=lld"
 
-  npm run tauri build
+  npm run -- tauri build --config '{"bundle":{"targets":["deb"]}}'
 }
 
 package() {
