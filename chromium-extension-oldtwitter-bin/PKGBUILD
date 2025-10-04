@@ -1,0 +1,23 @@
+pkgname=chromium-extension-oldtwitter-bin
+pkgver=1.9.2
+pkgrel=1
+pkgdesc="Extension to return old Twitter layout from 2015 / 2018."
+arch=('any')
+url="https://github.com/dimdenGD/OldTwitter"
+license=('custom')
+makedepends=(unzip)
+source=("https://github.com/dimdenGD/OldTwitter/releases/download/v$pkgver/OldTwitterChrome.zip")
+noextract=(OldTwitterChrome.zip)
+sha256sums=('bdec090959d69c1b6b9cebf6476b1f82c416b4e03bc908ab0cf780d776c8dd51')
+
+prepare(){
+  mkdir OldTwitter
+  unzip OldTwitterChrome.zip -d OldTwitter
+}
+
+package() {
+  install -d "${pkgdir}/usr/share/chromium/extensions"
+
+  cp -r "${srcdir}/OldTwitter" "${pkgdir}/usr/share/chromium/extensions/"
+  install -Dm644 "${srcdir}/OldTwitter/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
