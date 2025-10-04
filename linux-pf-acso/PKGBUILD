@@ -3,8 +3,8 @@
 pkgbase="linux-pf-acso"
 _suffix=""
 pkgname=(${pkgbase}${_suffix} ${pkgbase}-headers${_suffix})
-_rev=40314eef045cb7631b601780583609cc23b30653
-pkgver=6.15.pf1
+_rev=d671649be437668a4155225a4b39188a8d27c2f4
+pkgver=6.16.pf2
 acsover="6.3"
 pkgrel=1
 pkgdesc="pf-kernel"
@@ -17,7 +17,7 @@ source=(https://codeberg.org/pf-kernel/linux/archive/${_rev}.tar.gz
 		config
 		https://raw.githubusercontent.com/benbaker76/linux-acs-override/main/$acsover/acso.patch)
 b2sums=(SKIP
-		'c4f5f536567df4943e8306c4586782efab9a69b58b38cf770a970b79526da4d2584326e497c27db13f0dd75e7b572d03b28187c6e01b788fe3b3321cbaee892f'
+		'723ba59a320bc0f7e72054bc9f21cee7bdac4cdefde16dcd9063401982f3b2e9b955dda67015e507a37fc3191c3a0f535f41ab02d9d4daf1e5d0c333beaae383'
 		'7cc9249d2bb5adc28b4b52a0d58a6c42133fb3194b557b7477ffcf2711f2dfeae11f28600d12ff7fd7ef593a9554faae0043db8227c620cf58215506f5609294')
 
 
