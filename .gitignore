@@ -2,3 +2,8 @@
 *.tar*
 */pkg
 */src
+
+# Linux pf acso
+linux-pf-acso/acso.patch
+linux-pf-acso/config
+
